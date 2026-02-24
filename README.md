@@ -289,3 +289,32 @@ dns_cloudflare_api_key = xxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 若果失败了，请使用下面的Docker Compose的方案：
+
+
+
+
+
+
+
+
+
+
+
+
+### Cloudflare 防火墙规则写法
+
+Security → WAF → Custom Rules → Create rule
+
+```cf
+(
+  http.request.headers["user-agent"][contains "Misskey"]
+  and http.request.headers["signature"][exists]
+  and (
+        http.request.uri.path contains "/users/"
+        or http.request.uri.path contains "/inbox"
+        or http.request.uri.path contains "/.well-known/"
+        or http.request.uri.path contains "/notes/"
+      )
+  and http.request.headers["user-agent"][contains "example.com"]
+)
+```
