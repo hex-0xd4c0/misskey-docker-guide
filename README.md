@@ -799,6 +799,7 @@ signToActivityPubGet: true
 
 #### 10. 启动Misskey
 ```bash
+# 务必在misskey目录下运行此命令
 docker compose up -d
 ```
 > 你也可以使用`sudo`运行此命令，但其实普通权限就够了。
