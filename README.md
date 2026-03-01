@@ -77,11 +77,11 @@ misskey在github有源代码。
 
 如果你有**IPv6**，可以在这里一并配置，请在添加完**A**类记录后再添加一个**AAAA**记录
 
-4. **打开Cloudflare代理**，让**灰云**变成**橙云**
+4. **关闭Cloudflare代理**，让**橙云**变成**灰云**
 
 > 方便使用`Let's Encrypt`自动配置**SSL**和**https**，如果你**不是Cloudflare**或希望**手动配置https**，忽视这一步。如果你的ISP支持`Let's Encrypt`，请查找相似选项并将其关闭（请注意，有些ISP并不会提供代理服务）。**等服务器正常运行后请将其打开**以使用**CDN**和其他**安全服务**并**加速访问**。
 
-> Cloudflare新建DNS记录时**默认是橙云**，如果你已经处于代理模式，请勿修改。
+> Cloudflare新建DNS记录时**默认是橙云**，请注意修改。
 
 5. **保存**该记录
 
@@ -301,7 +301,7 @@ wget https://raw.githubusercontent.com/joinmisskey/bash-install/main/ubuntu.sh -
 
 
 
-理论上，当你看到`Now listening on port 3000`时，Misskey已经**部署完成**，你可以使用你的域名访问你的服务器。
+理论上，当你看到`Now listening on port 3000`时，Misskey已经**部署完成**，你可以**打开Cloudflare小橙云代理**和使用你的域名访问你的服务器。
 
 
 
@@ -498,7 +498,7 @@ dns_cloudflare_api_key = xxxxxxxxxxxxxxxxxxxxxxxxxx
 # 使用chmod授予权限
 sudo chmod 600 /etc/cloudflare/cloudflare.ini
 
-# 将 example.ltd 更换为自己的域名！
+# 将 example.ltd 更换为自己的*根*域名！
 sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/cloudflare/cloudflare.ini --dns-cloudflare-propagation-seconds 60 --server https://acme-v02.api.letsencrypt.org/directory -d example.tld -d *.example.tld
 ```
 如果显示`*Congratulations!*`则配置完成。生成的.pem证书文件请**妥善**保存备用。（配置Nginx会用到）
